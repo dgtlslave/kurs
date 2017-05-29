@@ -5,7 +5,7 @@
         public $mysqli;
 
         public function __construct(){
-            $this->mysqli = new mysqli('localhost', 'root', 'slavko84', 'workflow');
+            $this->mysqli = new mysqli('localhost', 'spacious', 'spacious', 'workflow');
         }
 
     }

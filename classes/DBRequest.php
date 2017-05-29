@@ -15,6 +15,10 @@ class DBRequest {
         $data = mysqli_fetch_row($query);                                   // перевести простой массив в ассоциативный
         return $data;
     }
+
+    public function registration($login, $email, $role, $password,){
+      $query= mysqli_query($link, "INSERT");
+    }
 }
 
     echo "<pre>";
