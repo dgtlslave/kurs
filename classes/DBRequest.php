@@ -1,8 +1,8 @@
 <?php
 
-include '../classes/DBAccess.php';
 
 class DBRequest {
+
 
     public function fetchAll($link, $tab_name){        //выберает всю информацию из указаной таблицы
         $query = mysqli_query($link, "SELECT * FROM `$tab_name`");
@@ -16,13 +16,39 @@ class DBRequest {
         return $data;
     }
 
-    public function registration($login, $email, $role, $password,){
-      $query= mysqli_query($link, "INSERT");
+    public static function reg_user($link, $data){
+      $query= mysqli_query($link, "INSERT INTO `users` (`lastname`, `firstname`, `middlename`, `email`, `password`, `role_id`, `login`, `function`)
+                                   VALUES ('".$data['lastname']."',
+                                           '".$data['firstname']."',
+                                           '".$data['middlename']."',
+                                           '".$data['email']."',
+                                           '".$data['password']."',
+                                           '".$data['character']."',
+                                           '".$data['login']."',
+                                           '".$data['function']."')");
     }
 }
 
-    echo "<pre>";
-    print_r(DBRequest::fetchOne($__conn, 'users'));
-    echo "</pre>";
+(new DBRequest());
 
 ?>
+
+
+
+<!--
+$req = new DBRequest();
+
+echo "<pre>";
+print_r(DBRequest::fetchOne($__conn, 'users'));
+echo "</pre>";
+ -->
+
+<!-- "INSERT INTO `users` (`lastname`, `firstname`, `middlename`, `email`, `password`, `role_id`, `login`, `function`)
+VALUES ($data['lastname'],
+        $data['firstname'],
+        $data['middlename'],
+        $data['email'],
+        $data['password'],
+        $data['character'],
+        $data['login'],
+        $data['function'])" -->
