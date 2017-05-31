@@ -5,7 +5,12 @@
     if (isset($_POST['do_signup'])) {
 
         $errors = array();
-
+        if (trim($_POST['login']) == "") {
+            $errors[] = "Enter your login, please.";
+        }
+        if (DBRequest::loginCheck($__conn, $_POST['login']) == true) {
+            $errors[] = "User with current login already exists.";
+        }
         if (trim($_POST['firstname']) == "") {
             $errors[] = "Enter your name, please.";
         }
@@ -15,17 +20,14 @@
         if (trim($_POST['middlename']) == "") {
             $errors[] = "Enter your middle name? plese.";
         }
+        if ($_POST['password'] == "") {
+            $errors[] = "Enter password, please.";
+        }
         if ($_POST['character'] == "Choose scope") {
             $errors[] = "Choose your character.";
         }
         if ($_POST['function'] == "Choose function") {
             $errors[] = "Choose your function.";
-        }
-        if (trim($_POST['login']) == "") {
-            $errors[] = "Enter your login, please.";
-        }
-        if (trim($_POST['email']) == "") {
-            $errors[] = "Enter your e-mail, please.";
         }
         if ($_POST['password'] == "") {
             $errors[] = "Enter password, please.";
@@ -48,6 +50,9 @@
 
 <form action="reg.php" method="POST">
     <p>
+        <input type="text" name="login" placeholder="login..." value = "<?php echo @$_POST['login'];?>">
+    </p>
+    <p>
         <input type="text" name="firstname" placeholder="First name..." value = "<?php echo @$_POST['firstname'];?>">
     </p>
     <p>
@@ -55,6 +60,9 @@
     </p>
     <p>
         <input type="text" name="middlename" placeholder="Middle name..." value = "<?php echo @$_POST['middlename'];?>">
+    </p>
+    <p>
+        <input type="email" name="email" placeholder="email..." value = "<?php echo @$_POST['email']?>">
     </p>
     <p>
       <select class="character" name="character">
@@ -71,12 +79,6 @@
         <option value="3">Function 2</option>
         <option value="4">Function 3</option>
       </select>
-    </p>
-    <p>
-        <input type="text" name="login" placeholder="login..." value = "<?php echo @$_POST['login'];?>">
-    </p>
-    <p>
-        <input type="email" name="email" placeholder="email..." value = "<?php echo @$_POST['email']?>">
     </p>
     <p>
         <input type="password" name="password" placeholder="pass...">

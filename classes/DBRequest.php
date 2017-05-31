@@ -1,5 +1,6 @@
 <?php
 
+//include "DBAccess.php";
 
 class DBRequest {
 
@@ -17,7 +18,7 @@ class DBRequest {
     }
 
     public static function reg_user($link, $data){
-      $query= mysqli_query($link, "INSERT INTO `users` (`lastname`, `firstname`, `middlename`, `email`, `password`, `role_id`, `login`, `function`)
+      $query = mysqli_query($link, "INSERT INTO `users` (`lastname`, `firstname`, `middlename`, `email`, `password`, `role_id`, `login`, `function`)
                                    VALUES ('".$data['lastname']."',
                                            '".$data['firstname']."',
                                            '".$data['middlename']."',
@@ -27,9 +28,13 @@ class DBRequest {
                                            '".$data['login']."',
                                            '".$data['function']."')");
     }
+
+    public static function loginCheck($link, $login) {
+        $query = mysqli_query($link, "SELECT `login` FROM `users` WHERE `login` = '.$login.'");
+        if (!empty($query)) return $query;
+    }
 }
 
-(new DBRequest());
 
 ?>
 
