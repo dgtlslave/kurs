@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.4deb1
+-- version 4.6.4
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Generation Time: May 25, 2017 at 08:11 AM
--- Server version: 5.7.18-0ubuntu0.16.10.1
--- PHP Version: 7.0.15-0ubuntu0.16.10.4
+-- Host: 127.0.0.1
+-- Generation Time: May 31, 2017 at 03:56 PM
+-- Server version: 5.7.14
+-- PHP Version: 5.6.25
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -144,25 +144,30 @@ INSERT INTO `status` (`status_id`, `status_name`) VALUES
 
 CREATE TABLE `users` (
   `user_id` int(11) NOT NULL,
+  `reg_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `lastname` varchar(50) NOT NULL,
   `firstname` varchar(50) NOT NULL,
   `middlename` varchar(50) NOT NULL,
   `email` varchar(75) NOT NULL,
   `password` varchar(50) NOT NULL,
   `role_id` int(2) NOT NULL,
-  `function_id` int(2) NOT NULL,
-  `create_date` varchar(32) NOT NULL,
-  `active` int(1) NOT NULL
+  `function` int(11) NOT NULL,
+  `login` varchar(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`user_id`, `lastname`, `firstname`, `middlename`, `email`, `password`, `role_id`, `function_id`, `create_date`, `active`) VALUES
-(1, 'Slavko', 'Alex', 'Victorovich', 'slavko.alexandr@gmail.com', '1', 1, 1, '1486918195', 1),
-(2, 'Ivanov', 'Ivan', 'Ivanovich', 'i.ivanov@gmail.com', '111', 2, 2, '', 1),
-(3, 'Ivanov', 'Ivan', 'Ivanovich', 'i.ivanov@gmail.com', '111', 2, 2, '', 1);
+INSERT INTO `users` (`user_id`, `reg_date`, `lastname`, `firstname`, `middlename`, `email`, `password`, `role_id`, `function`, `login`) VALUES
+(1, '2017-05-31 06:41:22', 'Slavko', 'Alex', 'Victorovich', 'slavko.alexandr@gmail.com', '1', 1, 0, '1'),
+(2, '2017-05-31 06:41:22', 'Ivanov', 'Ivan', 'Ivanovich', 'i.ivanov@gmail.com', '111', 2, 0, '2'),
+(3, '2017-05-31 06:41:22', 'Ivanov', 'Ivan', 'Ivanovich', 'i.ivanov@gmail.com', '111', 2, 0, '2'),
+(16, '2017-05-31 06:42:17', 'Ivanivich', 'Nikolay', 'Alrxeev', 'nirol@gmail.com', '55', 2, 2, 'nik_alx'),
+(30, '2017-05-31 13:13:32', 'Slacko', 'Nikolay', 'Vvvv', 'slacko.s@gmail.com', '33', 2, 3, 'alex12'),
+(39, '2017-05-31 15:20:13', 'Slavko', 'Nikolay', 'Alrxeev', 'slavko.alexandr@gmail.com', '22', 3, 4, 'nik_alx'),
+(40, '2017-05-31 15:33:39', 'Slavko', 'Nikolay', 'Alrxeev', 'slavko.alexandr@gmail.com', '22', 3, 4, 'nik_alx'),
+(41, '2017-05-31 15:46:30', 'Slacko', 'Nikolay', 'Vict', 'slavko.alexandr@gmail.com', '556', 3, 3, 'nik_alx556');
 
 --
 -- Indexes for dumped tables
@@ -182,7 +187,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
