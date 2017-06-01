@@ -1,6 +1,6 @@
 <?php
 
-//include "DBAccess.php";
+ include "DBAccess.php";
 
 class DBRequest {
 
@@ -30,10 +30,27 @@ class DBRequest {
     }
 
     public static function loginCheck($link, $login) {
-        $query = mysqli_query($link, "SELECT `login` FROM `users` WHERE `login` = '.$login.'");
-        if (!empty($query)) return $query;
+        $query = mysqli_query($link, "SELECT * FROM `users` WHERE `login` = '" . $login . "'");
+        return !! $query->num_rows;
+    }
+
+    public static function emailCheck($link, $email) {
+        $query = mysqli_query($link, "SELECT * FROM `users` WHERE `email` = '" . $email . "'");
+        return !! $query->num_rows;
+    }
+
+    public static function passCheck($link, $login, $password) {
+        $query = mysqli_query($link, "SELECT `login`, `password` FROM `users` WHERE `login` = '" . $login . "' AND `password` = '" . $password . "'");
+        $data = mysqli_fetch_array($query);
+        return $data;
     }
 }
+
+ $r = new DBRequest();
+ $t = array();
+ $t = $r->passCheck($__conn, "alex12", "33");
+ echo $t['1'];
+ echo $t['0'];
 
 
 ?>

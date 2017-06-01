@@ -20,8 +20,8 @@
         if (trim($_POST['middlename']) == "") {
             $errors[] = "Enter your middle name? plese.";
         }
-        if ($_POST['password'] == "") {
-            $errors[] = "Enter password, please.";
+        if (DBRequest::emailCheck($__conn, $_POST['email']) == true) {
+            $errors[] = "Current e-mail already exists..";
         }
         if ($_POST['character'] == "Choose scope") {
             $errors[] = "Choose your character.";
@@ -43,13 +43,12 @@
             echo "<div class=\"sign_up_mssg\">".array_shift($errors)."</div>";
         }
     }
-    echo "<pre>";
-    print_r($__conn);
-    echo "</pre>";
+
 ?>
 
 <form action="reg.php" method="POST">
     <p>
+        <label for="login">Login</label>
         <input type="text" name="login" placeholder="login..." value = "<?php echo @$_POST['login'];?>">
     </p>
     <p>

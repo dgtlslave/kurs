@@ -1,6 +1,6 @@
 <?php
     include '../classes/DBAccess.php';
-    include '../classes/Authorization.php';
+    require '../classes/Authorization.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
