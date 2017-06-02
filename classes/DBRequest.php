@@ -1,6 +1,6 @@
 <?php
 
- include "DBAccess.php";
+   //include "DBAccess.php";
 
 class DBRequest {
 
@@ -39,18 +39,18 @@ class DBRequest {
         return !! $query->num_rows;
     }
 
-    public static function passCheck($link, $login, $password) {
-        $query = mysqli_query($link, "SELECT `login`, `password` FROM `users` WHERE `login` = '" . $login . "' AND `password` = '" . $password . "'");
-        $data = mysqli_fetch_array($query);
+    public static function signInCheck($link, $login, $password) {
+        $query = mysqli_query($link, "SELECT * FROM `users` WHERE `login` = '" . $login . "' AND `password` = '" . $password . "'");
+        $data = mysqli_fetch_assoc($query);
         return $data;
     }
 }
 
- $r = new DBRequest();
- $t = array();
- $t = $r->passCheck($__conn, "alex12", "33");
- echo $t['1'];
- echo $t['0'];
+ // $r = new DBRequest();
+ // $t = array();
+ // $t = $r->singInCheck($__conn, "alex12", "355");
+ // echo $t['login'];
+ // echo $t['password'];
 
 
 ?>

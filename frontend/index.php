@@ -9,21 +9,32 @@
     <title>PMI Workflow</title>
     <link rel="shortcut icon" href="../image/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" type="text/css" href="../css/reset.css">
-    <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <!-- <link rel="stylesheet" type="text/css" href="../css/style.css"> -->
 </head>
 <body>
     <div class="container">
         <header class="header">
             <div class="logo"></div>
             <div class="nav_bar">
-                <ul>
-                    <li class="start"><a href="#">sign up</a></li>
-                </ul>
+
+                <?php if (isset($_SESSION['logged_user'])) {?>
+                        authorazed as:
+                    <a href="logedout.php">logout</a>
+                    <a href="spec.php">specification</a>
+                    <a href="about.php">about</a>
+                    <a href="about.php">about</a>
+                 <?php } else { ?>
+                    <a href="signin.php">sign in</a>
+                    <a href="reg.php">sign up</a>
+                    <a href="spec.php">specification</a>
+                    <a href="dashboard.php">dashboard</a>
+                <?php } ?>
+
             </div>
         </header>
         <main>
             <div class="form">
-                <form name="signin" action="index.php" method="POST">
+                <!-- <form name="signin" action="index.php" method="POST">
                     <fieldset form="signin">
                         <legend>Sign in</legend>
                     <input type="email" name="inputEmail" id="inputEmail" required autofocus>
@@ -35,11 +46,11 @@
                     <button class="clear" type="reset">Clear</button>
                     </div>
                     </fieldset>
-                </form>
+                </form> -->
             </div>
         </main>
         <footer>
-            <p><span>&copy Alex Slavko 2017</span><span><a href="#">contact us</a></span></p>
+            <p><span>&copy  2017</span><span><a href="#">contact us</a></span></p>
         </footer>
     </div>
 </body>

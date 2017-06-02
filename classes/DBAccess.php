@@ -14,4 +14,6 @@
     $__conn = $db_access->mysqli; // подключение к БД присвоено переменной $__conn
                                   // через создание экземпляра $db_access z класса DBAccess
 
+    session_start();
+
 ?>

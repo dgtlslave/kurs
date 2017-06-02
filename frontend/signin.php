@@ -1,36 +1,35 @@
 <?php
   include "../classes/DBRequest.php";
-
+  include "../classes/DBAccess.php";
 
   if (isset($_POST['signin'])) {
 
     $errors = array();
 
-    if (DBRequest::loginCheck($__conn, $_POST['login']) == true) {
+    $user = DBRequest::signInCheck($__conn, $_POST['login'], $_POST['password']);
 
-      if (password_verify($_POST['password'], DBRequest::passCheck($__conn, $_POST['password']))) {
-        echo "test";
-      } else {
-        $errors[] = "Password not valid";
-      }
-
+    if ($user == true) {
+      $_SESSION['logged_user'] = $user;
+      header("Location: index.php");
     } else {
-      $errors[] = "User with current login does not exist."
+       $errors[] = "Login or password are incorrect.";
     }
-
+    if (!empty($errors)) {
+      echo "<div class=\"sign_in_mssg\">".array_shift($errors)."</div>";
+    }
   }
 
 
  ?>
 
-<form class="signin" action="singin.php" method="POST">
+<form class="signin" action="signin.php" method="POST">
   <p>
-    <input type="text" name="login">
+    <input type="text" name="login" value="<?php echo @$_POST['login']?>">
   </p>
   <p>
     <input type="password" name="password">
   </p>
   <p>
-    <input type="submit" name="signin" value="GO">
+    <button type="submit" name="signin">GO</button>
   </p>
 </form>
