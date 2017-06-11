@@ -18,16 +18,14 @@
             <div class="nav_bar">
 
                 <?php if (isset($_SESSION['logged_user'])) {?>
-                        authorazed as:
+                        authorazed as: <?php echo $_SESSION['logged_user']['login']?>
                     <a href="logedout.php">logout</a>
+                    <a href="dashboard.php">dashboard</a>
                     <a href="spec.php">specification</a>
-                    <a href="about.php">about</a>
-                    <a href="about.php">about</a>
                  <?php } else { ?>
                     <a href="signin.php">sign in</a>
                     <a href="reg.php">sign up</a>
-                    <a href="spec.php">specification</a>
-                    <a href="dashboard.php">dashboard</a>
+                    <a href="about.php">about</a>
                 <?php } ?>
 
             </div>

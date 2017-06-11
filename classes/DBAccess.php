@@ -5,7 +5,7 @@
         public $mysqli;
 
         public function __construct(){
-            $this->mysqli = new mysqli('localhost', 'spacious', 'spacious', 'workflow');
+            $this->mysqli = new mysqli('localhost', 'root', 'slavko84', 'workflow');
         }
 
     }
@@ -17,3 +17,5 @@
     session_start();
 
 ?>
+
+<!-- 'localhost', 'spacious', 'spacious', 'workflow' -->

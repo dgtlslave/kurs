@@ -44,6 +44,14 @@ class DBRequest {
         $data = mysqli_fetch_assoc($query);
         return $data;
     }
+
+    public static function dashbordFullData($link, $user_id) {
+      $query = mysqli_query($link, "SELECT * FROM `application` 
+                                    WHERE `user_id` = '" . $user_id . "' AND `app_status` != `5`");
+      $data = mysqli_fetch_assoc($query);
+      return $data;
+    }
+
 }
 
  // $r = new DBRequest();
